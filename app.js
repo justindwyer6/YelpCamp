@@ -17,8 +17,9 @@ const Campground       = require("./models/campground"),
       indexRoutes      = require("./routes/index"),
       seedDB           = require("./seeds")
 
-// mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(DB_URL, {
+// Connect to the database
+db_url = process.db.DB_URL || "mongodb://localhost:27017/yelp_camp"
+mongoose.connect(db_url, {
     useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => {
     console.log("Connected to mongodb!");
@@ -26,6 +27,7 @@ mongoose.connect(DB_URL, {
     console.log(`ERROR: ${err.message}`);
 });
 
+// App Configuration
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(`${__dirname}/public`));
@@ -33,7 +35,7 @@ app.use(methodOverride("_method"));
 app.use(flash());
 seedDB();
 
-// PASSPORT CONFIGURATION
+// Passport Configuration
 app.use(require("express-session")({
     secret: "I like to eat tacos and nachos late at night when no one is watching.",
     resave: false,
