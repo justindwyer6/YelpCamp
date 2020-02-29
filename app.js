@@ -18,7 +18,7 @@ const Campground       = require("./models/campground"),
       seedDB           = require("./seeds")
 
 // mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(`DB_URL`, {
+mongoose.connect(DB_URL, {
     useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => {
     console.log("Connected to mongodb!");
