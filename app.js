@@ -18,7 +18,7 @@ const Campground       = require("./models/campground"),
       seedDB           = require("./seeds")
 
 // Connect to the database
-db_url = process.db.DB_URL || "mongodb://localhost:27017/yelp_camp"
+db_url = process.env.DB_URL || "mongodb://localhost:27017/yelp_camp"
 mongoose.connect(db_url, {
     useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => {
