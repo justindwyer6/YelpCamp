@@ -18,7 +18,7 @@ const Campground       = require("./models/campground"),
       seedDB           = require("./seeds")
 
 // mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
-mongoose.connect(`mongodb+srv://jdwyer:${process.env.DB_PASS}@yelpcamp-yj7iw.mongodb.net/test?retryWrites=true&w=majority`, {
+mongoose.connect(`DB_URL`, {
     useNewUrlParser: true, useUnifiedTopology: true
 }).then(() => {
     console.log("Connected to mongodb!");
