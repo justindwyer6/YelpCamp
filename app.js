@@ -1,5 +1,6 @@
 // External Dependencies
-const express        = require("express"),
+const dotenv         = require('dotenv').config()
+      express        = require("express"),
       app            = express(),
       bodyParser     = require("body-parser"),
       mongoose       = require("mongoose"),
@@ -16,7 +17,15 @@ const Campground       = require("./models/campground"),
       indexRoutes      = require("./routes/index"),
       seedDB           = require("./seeds")
 
-mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
+// mongoose.connect("mongodb://localhost:27017/yelp_camp", {useNewUrlParser: true, useUnifiedTopology: true});
+mongoose.connect(`mongodb+srv://jdwyer:${process.env.DB_PASS}@yelpcamp-yj7iw.mongodb.net/test?retryWrites=true&w=majority`, {
+    useNewUrlParser: true, useUnifiedTopology: true
+}).then(() => {
+    console.log("Connected to mongodb!");
+}).catch(err => {
+    console.log(`ERROR: ${err.message}`);
+});
+
 app.use(bodyParser.urlencoded({extended: true}));
 app.set("view engine", "ejs");
 app.use(express.static(`${__dirname}/public`));
